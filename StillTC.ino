@@ -81,7 +81,7 @@ void setup()
   pinMode( PIN_F, OUTPUT ); // resist to cath led
   pinMode( PIN_G, OUTPUT ); // resist to cath led
   pinMode( PIN_TM, OUTPUT ); // resist to cath led
-  
+
   pinMode( PIN_BM, OUTPUT ); // PNP Trans
   pinMode( PIN_N1, OUTPUT ); // PNP Trans
   pinMode( PIN_N2, OUTPUT ); // PNP Trans
@@ -127,7 +127,7 @@ void loop()
     {
       g_iActiveMenu = (g_iActiveMenu+1)%g_iActiveMenuCount;
     }
-    
+
     switch( g_iActiveMenu )
     {
       case 1: // C/F (not using K for this application)
@@ -152,12 +152,12 @@ void loop()
         {
           g_Kp++;
         }
-    
+
         if( BTN_DOWN_PRESSED )
         {
           g_Kp--;
         }
-  
+
         sprintf( g_sDisplay, "P%3i", (int)g_Kp );
         break;
 
@@ -166,12 +166,12 @@ void loop()
         {
           g_Ki++;
         }
-    
+
         if( BTN_DOWN_PRESSED )
         {
           g_Ki--;
         }
-  
+
         sprintf( g_sDisplay, "I%3i", (int)g_Ki );
         break;
 
@@ -180,12 +180,12 @@ void loop()
         {
           g_Kd++;
         }
-    
+
         if( BTN_DOWN_PRESSED )
         {
           g_Kd--;
         }
-  
+
         sprintf( g_sDisplay, "D%3i", (int)g_Kd );
         break;
 
@@ -194,12 +194,12 @@ void loop()
         {
           g_tTargetTemp++;
         }
-    
+
         if( BTN_DOWN_PRESSED )
         {
           g_tTargetTemp--;
         }
-  
+
         sprintf( g_sDisplay, "%3i%c", (int)g_tTargetTemp, g_tempUnit );
         break;
     }
@@ -231,17 +231,17 @@ void loop()
 
 ISR(PCINT0_vect)
 {
-  if( millis() > g_iButtonPressCounter ) // bouncing is the devil
+  if( millis() > g_iButtonPressCounter ) // bouncing buttons are the devil
   {
     if( !digitalRead(PIN_BTN_UP) ) // ! for pull up resistor logic
       BTN_UP_PRESSED = true;
-  
+
     if( !digitalRead(PIN_BTN_DOWN) ) // ! for pull up resistor logic
       BTN_DOWN_PRESSED = true;
-  
+
     if( !digitalRead(PIN_BTN_MENU) ) // ! for pull up resistor logic
       BTN_MENU_PRESSED = true;
-  
+
     g_iButtonPressCounter = millis()+g_iButtonPressDelay;
   }
 }
