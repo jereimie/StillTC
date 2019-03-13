@@ -32,7 +32,7 @@ double getTemp( int pin, ... )
 
     if( tempUnit == 'F' )
     {
-      Temp = (Temp * 9.0)/ 5.0 + 32.0; // Celsius to Fahrenheit - comment out this line if you need Celsius
+      Temp = (Temp * 9.0)/ 5.0 + 32.0; // Celsius to Fahrenheit
     }
   }
 
